@@ -1,0 +1,4 @@
+{
+  "mongoURL": "mongodb+srv://userface:userface@cluster0-cdzyo.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  "key": "key"
+}
