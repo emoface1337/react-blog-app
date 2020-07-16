@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 class Navbar extends Component {
     render() {
+        const {user} = this.props
         return (
             <nav className="navbar navbar-expand-md navbar-dark bg-primary mb-3">
                 <div className="container">
@@ -18,16 +20,29 @@ class Navbar extends Component {
                                 <Link to="/add" className="nav-link">Добавить статью</Link>
                             </li>
                         </ul>
-                        <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <Link to="/login" className="nav-link">Вход</Link>
-                            </li>
-                        </ul>
-                        <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <Link to="/register" className="nav-link">Регистрация</Link>
-                            </li>
-                        </ul>
+
+                        {user ? (
+                                <ul className="navbar-nav">
+                                    <li className="nav-item">
+                                        <Link to="#" className="nav-link">{user.name}</Link>
+                                    </li>
+
+                                    <li className="nav-item">
+                                        <Link to="/logout" className="nav-link">Выход</Link>
+                                    </li>
+                                </ul>
+                            ) :
+                            (
+                                <ul className="navbar-nav">
+                                    <li className="nav-item">
+                                        <Link to="/login" className="nav-link">Вход</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="/register" className="nav-link">Регистрация</Link>
+                                    </li>
+                                </ul>
+                            )}
+
                     </div>
                 </div>
             </nav>
@@ -35,4 +50,7 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar
+const mapStateToProps = state => ({
+    user: state.authReducer.user
+})
+export default connect(mapStateToProps)(Navbar)
