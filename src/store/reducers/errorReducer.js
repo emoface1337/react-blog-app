@@ -7,6 +7,9 @@ export default (state = initialState, action) => {
         case actions.LOGIN_ERROR:
             return {...action.error}
 
+        case actions.CLEAR_ERRORS:
+            return {}
+
         default:
             return state
 

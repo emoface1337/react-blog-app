@@ -12,6 +12,16 @@ export const loginUser = loginData => async dispatch => {
 
 }
 
+export const registerUser = registerData => async dispatch => {
+    try {
+        const result = await axios.post('/api/users/register', registerData)
+        dispatch({type: actions.SET_USER, user: result.data.user})
+    } catch (e) {
+        dispatch({type: actions.LOGIN_ERROR, error: e.response.data})
+    }
+
+}
+
 export const logoutUser = () => {
     js_cookie.remove('jwt')
     return {
