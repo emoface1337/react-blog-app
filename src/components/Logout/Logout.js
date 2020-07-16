@@ -1,20 +1,19 @@
-import React, {Component} from 'react'
+import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 
 import {logoutUser} from '../../store/actions/authActions'
 
-class Logout extends Component {
-    componentDidMount() {
-        this.props.logoutUser()
-        this.props.history.replace('/login')
-    }
+const Logout = ({logoutUser, history}) => {
 
-    render() {
-        return (
-            <div>
-            </div>
-        )
-    }
+    useEffect(() => {
+        logoutUser()
+        history.replace('/login')
+    })
+
+    return (
+        <>
+        </>
+    )
 }
 
 export default connect(null, {logoutUser})(Logout)
