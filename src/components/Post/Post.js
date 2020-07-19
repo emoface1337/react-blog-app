@@ -5,7 +5,7 @@ const Post = ({post}) => {
     const shortText = text => text.substring(0, 100) + "..."
 
     return (
-        <div className="card">
+        <div className="card mb-2">
             <div className="card-body">
                 <h1>{post.title}</h1>
                 <p>{shortText(post.text)}</p>

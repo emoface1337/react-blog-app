@@ -9,6 +9,9 @@ import Navbar from './components/Navbar/Navbar'
 import Login from './components/Login/Login'
 import Logout from './components/Logout/Logout'
 import Register from './components/Register/Register'
+import PostPage from './components/PostPage/PostPage'
+import AddPost from './components/AddPost/AddPost'
+import EditPost from './components/EditPost/EditPost'
 
 const App = () => {
     return (
@@ -20,6 +23,9 @@ const App = () => {
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/logout" component={Logout}/>
                     <Route exact path="/register" component={Register}/>
+                    <Route exact path="/post/:id" component={PostPage}/>
+                    <Route exact path="/add" component={AddPost}/>
+                    <Route exact path="/edit/:id" component={EditPost}/>
                     <Route path="/" component={NotFoundPage}/>
                 </Switch>
             </div>

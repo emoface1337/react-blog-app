@@ -11,8 +11,13 @@ export default (state = initialState, action) => {
             return {...state, posts: action.posts}
         case actions.GET_POST:
             return {...state, post: action.post}
+        case actions.ADD_POST:
+            return {...state, posts: null}
+        case actions.EDIT_POST:
+            return {...state, post: null}
+        case actions.DELETE_POST:
+            return {...state, post: null}
         default:
             return state
-
     }
 }
