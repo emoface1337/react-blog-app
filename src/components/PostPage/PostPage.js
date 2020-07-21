@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {useParams, Link} from 'react-router-dom'
 
 import {getPost, deletePost} from '../../store/actions/postActions'
+import AddComment from '../AddComment/AddComment'
+import Comments from '../Comments/Comments'
 
 const PostPage = ({getPost, deletePost, history, user, post}) => {
     const {id} = useParams()
@@ -23,13 +25,15 @@ const PostPage = ({getPost, deletePost, history, user, post}) => {
 
             {
                 user && user.id === post.author._id ? (
-                        <div>
+                        <div className="mb-3">
                             <button className="btn btn-danger mr-2" onClick={() => deletePost(id, history)}>Удалить</button>
                             <Link className="btn btn-light mr-2" to={`/edit/${post._id}`}>Редактировать</Link>
                         </div>
                     )
                     : null
             }
+            <AddComment/>
+            <Comments comments={post.comments}/>
         </div>
     )
 }

@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {editPost, getPost} from '../../store/actions/postActions'
 import {useParams} from 'react-router'
 
+import withAuth from '../../hoc/withAuth'
+
 const EditPost = ({post, editPost, getPost, history}) => {
 
     const {id} = useParams()
@@ -48,4 +50,4 @@ const mapStateToProps = state => ({
     post: state.postReducer.post
 })
 
-export default connect(mapStateToProps, {editPost, getPost})(EditPost)
+export default withAuth(connect(mapStateToProps, {editPost, getPost})(EditPost))

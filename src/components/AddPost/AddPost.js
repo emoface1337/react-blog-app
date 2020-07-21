@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {addPost} from '../../store/actions/postActions'
 
+import withAuth from '../../hoc/withAuth'
+
 const AddPost = ({addPost, history}) => {
     const [title, setTitle] = useState('')
     const [text, setText] = useState('')
@@ -26,4 +28,4 @@ const AddPost = ({addPost, history}) => {
     )
 }
 
-export default connect(null, {addPost})(AddPost)
+export default withAuth(connect(null, {addPost})(AddPost))

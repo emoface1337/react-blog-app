@@ -17,6 +17,10 @@ export default (state = initialState, action) => {
             return {...state, post: null}
         case actions.DELETE_POST:
             return {...state, post: null}
+        case actions.ADD_COMMENT:
+            return {...state, post: action.post}
+        case actions.DELETE_COMMENT:
+            return {...state, post: action.post}
         default:
             return state
     }

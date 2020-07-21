@@ -31,3 +31,13 @@ export const deletePost = (id, history) => async dispatch => {
     dispatch({type: actions.DELETE_POST})
     history.replace('/')
 }
+
+export const addComment = (postId, comment) => async dispatch => {
+    const res = await axios.post(`/api/posts/comment/${postId}`, comment)
+    dispatch({type: actions.ADD_COMMENT, post: res.data})
+}
+
+export const deleteComment = (commentId) => async dispatch => {
+    const res = await axios.delete(`/api/posts/comment/${commentId}`)
+    dispatch({type: actions.DELETE_COMMENT, post: res.data})
+}
