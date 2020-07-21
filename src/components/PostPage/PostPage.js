@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import {useParams, Link} from 'react-router-dom'
+import Helmet from 'react-helmet'
 
 import {getPost, deletePost} from '../../store/actions/postActions'
 import AddComment from '../AddComment/AddComment'
@@ -18,23 +19,29 @@ const PostPage = ({getPost, deletePost, history, user, post}) => {
     }
 
     return (
-        <div>
-            <h1>{post.title}</h1>
-            <p className="text-muted">{post.author.name}</p>
-            <p>{post.text}</p>
+        <>
+            <Helmet>
+                <title>{post.title}</title>
+            </Helmet>
+            <div>
+                <h1>{post.title}</h1>
+                <p className="text-muted">{post.author.name}</p>
+                <p>{post.text}</p>
 
-            {
-                user && user.id === post.author._id ? (
-                        <div className="mb-3">
-                            <button className="btn btn-danger mr-2" onClick={() => deletePost(id, history)}>Удалить</button>
-                            <Link className="btn btn-light mr-2" to={`/edit/${post._id}`}>Редактировать</Link>
-                        </div>
-                    )
-                    : null
-            }
-            <AddComment/>
-            <Comments comments={post.comments}/>
-        </div>
+                {
+                    user && user.id === post.author._id ? (
+                            <div className="mb-3">
+                                <button className="btn btn-danger mr-2" onClick={() => deletePost(id, history)}>Удалить
+                                </button>
+                                <Link className="btn btn-light mr-2" to={`/edit/${post._id}`}>Редактировать</Link>
+                            </div>
+                        )
+                        : null
+                }
+                <AddComment/>
+                <Comments comments={post.comments}/>
+            </div>
+        </>
     )
 }
 

@@ -1,5 +1,7 @@
 import React, {useRef, useEffect} from 'react'
 import {connect} from 'react-redux'
+import Helmet from 'react-helmet'
+
 import {editPost, getPost} from '../../store/actions/postActions'
 import {useParams} from 'react-router'
 
@@ -32,17 +34,22 @@ const EditPost = ({post, editPost, getPost, history}) => {
     }
 
     return (
-        <form onSubmit={onSubmit}>
-            <div className="form-group">
-                <label htmlFor="title">Заголовок</label>
-                <input type="text" defaultValue={post.title} className="form-control" name="title"
-                       ref={titleRefValue}/>
-                <label htmlFor="text">Текст статьи</label>
-                <input type="text" defaultValue={post.text} className="form-control" name="text"
-                       ref={textRefValue}/>
-            </div>
-            <button type="submit" className="btn btn-primary">Редактировать</button>
-        </form>
+        <>
+            <Helmet>
+                <title>Редактирование статьи</title>
+            </Helmet>
+            <form onSubmit={onSubmit}>
+                <div className="form-group">
+                    <label htmlFor="title">Заголовок</label>
+                    <input type="text" defaultValue={post.title} className="form-control" name="title"
+                           ref={titleRefValue}/>
+                    <label htmlFor="text">Текст статьи</label>
+                    <textarea defaultValue={post.text} className="form-control" name="text"
+                           ref={textRefValue}/>
+                </div>
+                <button type="submit" className="btn btn-primary">Редактировать</button>
+            </form>
+        </>
     )
 }
 
