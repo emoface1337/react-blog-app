@@ -17,10 +17,10 @@ const AddPost = ({addPost, history}) => {
         <form onSubmit={onSubmit}>
             <div className="form-group">
                 <label htmlFor="title">Заголовок</label>
-                <input type="text" value={title} onChange={e => setTitle(e.target.value)} className="form-control"
+                <input type="text" value={title} onChange={event => setTitle(event.target.value)} className="form-control"
                        name="title"/>
                 <label htmlFor="text">Текст статьи</label>
-                <input type="text" value={text} onChange={e => setText(e.target.value)} className="form-control"
+                <input type="text" value={text} onChange={event => setText(event.target.value)} className="form-control"
                        name="text"/>
             </div>
             <button type="submit" className="btn btn-primary">Добавить</button>

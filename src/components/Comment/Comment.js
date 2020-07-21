@@ -1,32 +1,28 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 
 import {deleteComment} from '../../store/actions/postActions'
 
-class Comment extends Component {
+const Comment = ({user, comment, deleteComment}) => {
 
-    deleteComment = () => {
-        const id = this.props.comment._id
-        this.props.deleteComment(id)
+    const onDeleteComment = () => {
+        deleteComment(comment._id)
     }
 
-    render() {
-        const {comment, user} = this.props
-        return (
-            <div className="card mb-3">
-                <div className="card-body">
-                    <h4>{comment.author.name}</h4>
-                    <p>{comment.text}</p>
-                    {
-                        user && user.id === comment.author._id &&
-                        (
-                            <button className="btn btn-danger" onClick={this.deleteComment}>Удалить</button>
-                        )
-                    }
-                </div>
+    return (
+        <div className="card mb-3">
+            <div className="card-body">
+                <h4>{comment.author.name}</h4>
+                <p>{comment.text}</p>
+                {
+                    user && user.id === comment.author._id &&
+                    (
+                        <button className="btn btn-danger" onClick={onDeleteComment}>Удалить</button>
+                    )
+                }
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 const mapStateToProps = state => ({

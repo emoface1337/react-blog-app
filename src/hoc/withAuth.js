@@ -1,26 +1,19 @@
-import React, {Component} from 'react'
+import React, {useEffect} from 'react'
 
 import {connect} from 'react-redux'
 
 export default ChildComponent => {
-    class WithAuth extends Component {
-        componentDidMount() {
-            this.toLogin()
-        }
+    const WithAuth = ({user, history}) => {
+        useEffect(() => {
+            toLogin()
+        })
 
-        componentDidUpdate() {
-            this.toLogin()
-        }
-
-        toLogin = () => {
-            if (!this.props.user) {
-                this.props.history.push('/login')
+        const toLogin = () => {
+            if (!user) {
+                history.push('/login')
             }
         }
-
-        render() {
-            return <ChildComponent {...this.props}/>
-        }
+        return <ChildComponent user={user} history={history}/>
     }
 
     const mapStateToProps = state => ({
